@@ -40,7 +40,78 @@ extern int score;
 
 COORD c;
 
+Menu mainMenu; 
+Menu pauseMenu; 
+Menu exitMenu; 
+Menu backgroundMenu; 
 
+void load_menu(char *szFile, Menu* pMenu)
+{
+	ifstream FileMenu;
+	string Data;
+	int i=0; 
+
+	FileMenu.open(szFile);
+	while (!FileMenu.eof())
+	{
+		getline(FileMenu, Data);
+		i++; 
+	}
+
+	pMenu->text = new char*[i]; 
+	pMenu->nLine = i; 
+	i = 0; 
+	FileMenu.close(); 
+	FileMenu.open(szFile);	
+	while (!FileMenu.eof())
+	{
+		getline(FileMenu, Data);
+		pMenu->text[i] = new char[Data.length()+1]; 
+		strcpy(pMenu->text[i],Data.c_str()); 
+		pMenu->text[i][Data.length()] = 0; 
+		i++; 
+	}
+}
+
+void init_menu()
+{
+	load_menu("menu.txt", &mainMenu); 
+	load_menu("pausemenu.txt", &pauseMenu); 
+	load_menu("background.txt", &backgroundMenu);		
+	load_menu("ragequit.txt", &exitMenu);
+}
+
+void free_menu(Menu*pMenu)
+{
+	for (int i=0; i<pMenu->nLine; i++)
+	{
+		delete pMenu->text[i]; 
+		pMenu->text[i] = NULL; 
+	}
+
+	delete [] pMenu->text;
+}
+
+void deinit_menu()
+{
+	free_menu(&mainMenu); 
+	free_menu(&pauseMenu); 
+	free_menu(&backgroundMenu);		
+	free_menu(&exitMenu);
+}
+
+void render_menu(Menu*pMenu)
+{
+	c.X = 0;
+	c.Y = 0;
+
+	for (int i=0; i<pMenu->nLine; i++)	
+	{
+		if (strlen(pMenu->text[i]))
+			writeToBuffer(c, pMenu->text[i]);
+		c.Y++;
+	}
+}
 
 void renderExit()
 {
