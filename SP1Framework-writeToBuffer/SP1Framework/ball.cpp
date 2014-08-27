@@ -48,7 +48,7 @@ void gen_ball()
 		{
 			ballwave[i].x = ballwave[i-1].x + 7;
 		}
-		ballwave[i].ballpos = 1;
+		ballwave[i].ballpos = 2;
 		ballwave[i].inplay = 0;
 	}
 }
@@ -73,7 +73,7 @@ void ballfall(float x,float y)
 		else if (ballwave[i].ballpos >= ConsoleSize.Y)
 		{
 			ballwave[i].inplay = 0;
-			ballwave[i].ballpos = 1;
+			ballwave[i].ballpos = 2;
 		}
 	}
 	if (elapsedTime > balltimer)
