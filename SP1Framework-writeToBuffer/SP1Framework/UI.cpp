@@ -45,6 +45,7 @@ Menu pauseMenu;
 Menu exitMenu; 
 Menu backgroundMenu; 
 
+// load the menu into memory 
 void load_menu(char *szFile, Menu* pMenu)
 {
 	ifstream FileMenu;
@@ -73,6 +74,7 @@ void load_menu(char *szFile, Menu* pMenu)
 	}
 }
 
+// call init_menu in game.cpp to init the various menu
 void init_menu()
 {
 	load_menu("menu.txt", &mainMenu); 
@@ -81,6 +83,8 @@ void init_menu()
 	load_menu("ragequit.txt", &exitMenu);
 }
 
+
+// free all the memory used for the menu 
 void free_menu(Menu*pMenu)
 {
 	for (int i=0; i<pMenu->nLine; i++)
@@ -92,6 +96,7 @@ void free_menu(Menu*pMenu)
 	delete [] pMenu->text;
 }
 
+// call deinit_menu in game.cpp to free the memory allocated for various menus
 void deinit_menu()
 {
 	free_menu(&mainMenu); 
@@ -100,6 +105,7 @@ void deinit_menu()
 	free_menu(&exitMenu);
 }
 
+// render the menu 
 void render_menu(Menu*pMenu)
 {
 	c.X = 0;
