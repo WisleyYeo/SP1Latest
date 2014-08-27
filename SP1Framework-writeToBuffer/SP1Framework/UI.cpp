@@ -73,6 +73,7 @@ void renderGame()
 	background();
 	endfall();
 	update_hand();
+	check_ball_hand_position();
 	
 
 
@@ -111,7 +112,6 @@ void renderGame()
 	c.X = 0;
 	c.Y = 3;
 	writeToBuffer(c, ss.str(), 0x60);
-	check_ball_hand_position();
 
 	
 	

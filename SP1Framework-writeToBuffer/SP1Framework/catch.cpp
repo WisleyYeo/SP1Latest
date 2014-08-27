@@ -42,23 +42,18 @@ void check_ball_hand_position()
 		if (ballwave[i].inplay != 0)
 		{
 
-			if (ballwave[i].ballpos == charLocation.Y - 1 && ballwave[i].x == charLocation.X + 1)
+			if (ballwave[i].ballpos == charLocation.Y  && ballwave[i].x == charLocation.X + 1)
 			{		
 				ballwave[i].inplay = 0;
 				ballwave[i].ballpos = 1;
-
-				
 				
 				if (fHandup == true)
 				{
-
-					score += 3;
-					// add score	
+					score += 3;	
 				}
 				else
 				{
 					State = DEAD;
-					
 					
 				}	 
 			}	

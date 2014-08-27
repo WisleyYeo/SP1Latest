@@ -50,13 +50,13 @@ void init()
 {
 	initConsole(ConsoleSize,"CATCHBALLS");
    
-	charLocation.X = ConsoleSize.X / 2 + 5;
+	charLocation.X = ConsoleSize.X / 2 + 4;
 	charLocation.Y = ConsoleSize.Y - 1;
 	
-	charLocationMid.X = ConsoleSize.X / 2 + 5;
+	charLocationMid.X = ConsoleSize.X / 2 + 4;
 	charLocationMid.Y = ConsoleSize.Y - 2;
 
-	charLocationTop.X = ConsoleSize.X / 2 + 5;
+	charLocationTop.X = ConsoleSize.X / 2 + 4;
 	charLocationTop.Y = ConsoleSize.Y - 3;
 
 
@@ -191,7 +191,7 @@ void updateGame()//INGAME
 {
 
 
-	if (keyPressed[K_LEFT]&& charLocation.X > ConsoleSize.X / 2 - 10)
+	if (keyPressed[K_LEFT]&& charLocation.X > ConsoleSize.X / 2 - 10 && fHandup != true)
 
 	{
 
@@ -204,7 +204,7 @@ void updateGame()//INGAME
 
 	}
 
-	if (keyPressed[K_RIGHT]&& charLocation.X < ConsoleSize.X - 16)
+	if (keyPressed[K_RIGHT]&& charLocation.X < ConsoleSize.X - 16 && fHandup != true)
 	{
 
 		charLocation.X+=7;
