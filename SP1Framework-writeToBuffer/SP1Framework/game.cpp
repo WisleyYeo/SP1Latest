@@ -44,7 +44,7 @@ void init()
 	charLocationMid.X = ConsoleSize.X / 2 + 4;
 	charLocationMid.Y = ConsoleSize.Y - 2;
 
-	charLocationTop.X = ConsoleSize.X / 2 + 4;
+	charLocationTop.X = ConsoleSize.X / 2 + 6;
 	charLocationTop.Y = ConsoleSize.Y - 3;
 
 	ballinit();

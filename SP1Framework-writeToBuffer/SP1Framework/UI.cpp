@@ -187,7 +187,7 @@ void renderGame()
 
 		writeToBuffer(charLocationMid, "\\(_)/", 0x0C);
 
-		writeToBuffer(charLocationTop, "  _", 0x0C);
+		writeToBuffer(charLocationTop, "_", 0x0C);
 
 	}
 	
@@ -198,7 +198,7 @@ void renderGame()
 
 		writeToBuffer(charLocationMid, " (_)", 0x0C);
 
-		writeToBuffer(charLocationTop, "  _", 0x0C);
+		writeToBuffer(charLocationTop, "_", 0x0C);
 	}
 
 

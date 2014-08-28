@@ -68,7 +68,7 @@ void ballfall(float x,float y)
 			c.Y = ballwave[i].ballpos;
 
 			
-			writeToBuffer(c, "(O)", 0x0F);
+			writeToBuffer(c, " O ", 0x0F);
 		}
 		else if (ballwave[i].ballpos >= ConsoleSize.Y)
 		{
