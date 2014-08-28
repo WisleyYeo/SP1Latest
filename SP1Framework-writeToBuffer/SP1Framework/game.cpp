@@ -18,8 +18,6 @@ using std::string;
 using std::vector;
 using std::ifstream;
 
-
-
 bool keyPressed[K_COUNT];
 bool ingame = false;
 
@@ -32,19 +30,9 @@ COORD charLocationTop;
 extern bool fHandup;
 extern double catchtimer;
 
-
 COORD ConsoleSize = { 80, 25 };
 
-
-
-
 GameState State = MAINMENU;
-
-
-
-
-
-
 
 void init()
 {
@@ -59,11 +47,9 @@ void init()
 	charLocationTop.X = ConsoleSize.X / 2 + 4;
 	charLocationTop.Y = ConsoleSize.Y - 3;
 
-
 	ballinit();
 
 	elapsedTime = 0.0;
-	
 }
 
 void shutdown()
@@ -118,6 +104,7 @@ void update(double dt)
 	case MAINMENU:
 		updateMainMenu();
 		break;
+
 	case HIGHSCORE:
 		updateHighscore();
 		break;
@@ -191,7 +178,7 @@ void updateGame()//INGAME
 {
 
 
-	if (keyPressed[K_LEFT]&& charLocation.X > ConsoleSize.X / 2 - 10 && fHandup != true)
+	if (keyPressed[K_LEFT]&& charLocation.X > ConsoleSize.X / 2 - 16 && fHandup != true)
 
 	{
 

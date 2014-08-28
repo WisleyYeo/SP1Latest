@@ -109,7 +109,7 @@ void deinit_menu()
 void render_menu(Menu*pMenu)
 {
 	c.X = 0;
-	c.Y = 0;
+	c.Y = 1;
 
 	for (int i=0; i<pMenu->nLine; i++)	
 	{
@@ -117,28 +117,8 @@ void render_menu(Menu*pMenu)
 			writeToBuffer(c, pMenu->text[i]);
 		c.Y++;
 	}
-}
 
-void renderExit()
-{
 	
-	ifstream ragequit;
-	string rage;
-
-	c.X = 0;
-	c.Y = 0;
-
-	SetConsoleTitle(L"RAGEQUITTING");
-	
-	ragequit.open("ragequit.txt");
-	while (!ragequit.eof())
-	{
-		getline(ragequit, rage);
-		writeToBuffer(c, rage);
-		c.Y++;
-	}
-	
-	g_quitGame = true;
 }
 
 
@@ -146,12 +126,12 @@ void renderExit()
 void renderGame()
 {
 	clearBuffer(0x0F);
-	
-	background();
+
+
 	endfall();
 	update_hand();
 	check_ball_hand_position();
-	
+
 
 
 
@@ -164,8 +144,8 @@ void renderGame()
 		0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	};
 
-	
-	
+
+
 
 
 	// displays the framerate
@@ -186,9 +166,12 @@ void renderGame()
 	//display the score
 	ss.str("");
 	ss << "Score : " << score;
-	c.X = 0;
-	c.Y = 3;
-	writeToBuffer(c, ss.str(), 0x60);
+	c.X = ConsoleSize.X /2;
+	c.Y = 0;
+	writeToBuffer(c, ss.str());
+
+	
+	
 
 	
 	
@@ -221,65 +204,7 @@ void renderGame()
 	
 	//flushBufferToConsole();
 }
- 
 
-
-
-
-void renderMainMenu()
-{
-	//Menu Title
-	
-	c.X = 0;
-	c.Y = 0;
-
-		string output;
-		ifstream Menu;
-		Menu.open("menu.txt");
-		SetConsoleTitle(L"MAIN MENU");
-		
-		while (!Menu.eof())
-		{
-
-			getline(Menu, output);
-			writeToBuffer(c, output);
-			c.Y++;
-
-		}
-		Menu.close();
-
-	
-	
-}
-
-void renderPause()
-{
-	//clearBuffer();
-
-	c.X = 0;
-	c.Y = 0;
-	ifstream PauseMenu;
-	string Data;
-
-
-	
-
-	SetConsoleTitle(L"PAUSED");
-	PauseMenu.open("pausemenu.txt");
-	while (!PauseMenu.eof())
-	{
-		getline(PauseMenu, Data);
-		writeToBuffer(c, Data);
-		c.Y++;
-	}
-	
-
-	
-
-	PauseMenu.close();
-
-	
-}
 
 void renderDead()
 {
@@ -313,29 +238,41 @@ void render()
 	// Clears the buffer with this colour attribute
 	clearBuffer(0x0F);
 
+	init_menu();
+
 	switch (State)
 	{
 	case MAINMENU:
-		renderMainMenu();
+		SetConsoleTitle(L"MAIN MENU");
+		render_menu(&mainMenu);
 		break;
-	case HIGHSCORE:
-		
+
+	case HIGHSCORE:	
 		LoadHS("Highscore.txt", HS);
 		SortHS(HS);
 		PrintHS(HS);
 		break;
 
 	case INGAME:
+		SetConsoleTitle(L"CATCHBALLS");
+
 		renderGame();
+		render_menu(&backgroundMenu);
+		
 		break;
+
 	case PAUSE:
-		renderPause();
+		SetConsoleTitle(L"PAUSED");
+		render_menu(&pauseMenu);
 		break;
+
 	case DEAD:
 		renderDead();
 		break;
+
 	case EXIT:
-		renderExit();
+		SetConsoleTitle(L"RAGEQUITTING");
+		render_menu(&exitMenu);
 		break;
 
 	}
@@ -344,33 +281,5 @@ void render()
 
 }
 
-void background()
-{
-	ifstream background;
-	string BackGround;
-	SetConsoleTitle(L"CATCHBALLS");
-	background.open("background.txt");
 
-	c.X = 0;
-	c.Y = 1;
-
-	
-	while (!background.eof())
-
-	{
-		getline(background, BackGround);
-		writeToBuffer(c, BackGround);
-		c.Y++;
-
-	}
-	background.close();
-
-	c.X = 0;
-	c.Y = 5;
-	writeToBuffer(c, score);
-	
-	
-
-	
-}
 
