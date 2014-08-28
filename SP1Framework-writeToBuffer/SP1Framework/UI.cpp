@@ -125,8 +125,6 @@ void render_menu(Menu*pMenu)
 	
 }
 
-
-
 void renderGame()
 {
 

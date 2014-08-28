@@ -40,10 +40,10 @@ void init()
 
 	charLocationLegs.X = ConsoleSize.X / 2 + 4;
 	charLocationLegs.Y = ConsoleSize.Y - 1;
-   
+
 	charLocation.X = ConsoleSize.X / 2 + 4;
 	charLocation.Y = ConsoleSize.Y - 2;
-	
+
 	charLocationMid.X = ConsoleSize.X / 2 + 4;
 	charLocationMid.Y = ConsoleSize.Y - 3;
 
@@ -57,18 +57,18 @@ void init()
 
 void shutdown()
 {
-    // Reset to white text on black background
+	// Reset to white text on black background
 	colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 
 	shutDownConsole();
 }
 
 void getInput()
-{    
-    keyPressed[K_UP] = isKeyPressed(VK_UP);
-    keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
-    keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
-    keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
+{
+	keyPressed[K_UP] = isKeyPressed(VK_UP);
+	keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
+	keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
+	keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
 	keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
 	keyPressed[K_ENTER] = isKeyPressed(VK_RETURN);
 	keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
@@ -81,21 +81,21 @@ void getInput()
 
 
 
-void update(double dt) 
+void update(double dt)
 {
-	
-	
-	
+
+
+
 	if (State == INGAME)
 	{
 		elapsedTime += dt;
 		deltaTime = dt;
 	}
-	
+
 
 	switch (State)
 	{
-	
+
 	case MAINMENU:
 		updateMainMenu();
 		break;
@@ -120,44 +120,48 @@ void update(double dt)
 		break;
 
 	}
-	
-	
+
+
 	// Updating the location of the character based on the key press
 
-	
+
 	if (keyPressed[K_ESCAPE])
 	{
+		Beep(1000, 62);
 		g_quitGame = true;
 	}
-	
-	
+
+
 }
 
 void updateHighscore()//HIGHSCORE
 {
 	if (keyPressed[K_1])
 	{
+		Beep(1000, 62);
 		State = MAINMENU;
 	}
 	if (keyPressed[K_ESCAPE])
 	{
+		Beep(1000, 62);
 		State = EXIT;
 	}
 }
 
 void updatePause()//PAUSE
 {
-	if (keyPressed[K_2]||keyPressed[K_ESCAPE])
+	if (keyPressed[K_2] || keyPressed[K_ESCAPE])
 	{
+		Beep(1500, 62);
 		State = EXIT;
 	}
 	if (keyPressed[K_1])
 	{
-		
+		Beep(1000, 62);
 		State = INGAME;
-		
+
 	}
-	
+
 
 }
 
@@ -173,37 +177,47 @@ void updateGame()//INGAME
 {
 
 
-	if (keyPressed[K_LEFT]&& charLocation.X > ConsoleSize.X / 2 - 16 && fHandup != true)
+	if (keyPressed[K_LEFT] && charLocation.X > ConsoleSize.X / 2 - 16 && fHandup != true)
 
 	{
 
-		charLocationLegs.X-=7;
-		charLocation.X-=7;
-		charLocationMid.X-=7;
-		charLocationTop.X-=7;
-		
+
+
+		Beep(2000, 67);
+
+		charLocation.X -= 7;
+		charLocationMid.X -= 7;
+		charLocationTop.X -= 7;
+		charLocationLegs.X -= 7;
+
 
 
 	}
 
-	if (keyPressed[K_RIGHT]&& charLocation.X < ConsoleSize.X - 16 && fHandup != true)
+	if (keyPressed[K_RIGHT] && charLocation.X < ConsoleSize.X - 16 && fHandup != true)
 	{
 
-		charLocationLegs.X+=7;
-		charLocation.X+=7;
-		charLocationMid.X+=7;
-		charLocationTop.X+=7;
+
 		
+
+		Beep(2000, 67);
+
+		charLocation.X += 7;
+		charLocationMid.X += 7;
+		charLocationTop.X += 7;
+		charLocationLegs.X += 7;
+
 
 	}
 
 	if (keyPressed[K_BACKSPACE])
 	{
-		
+		Beep(1000, 62);
 		State = PAUSE;
 	}
 	if (keyPressed[K_ESCAPE])
 	{
+		Beep(1000, 62);
 		State = EXIT;
 	}
 }
@@ -214,16 +228,19 @@ void updateMainMenu()//MAINMENU
 {
 	if (keyPressed[K_ENTER])
 	{
+		Beep(3000, 62);
 		State = INGAME;
 	}
-	
+
 	if (keyPressed[K_HOME])
 	{
+		Beep(3000, 62);
 		State = HIGHSCORE;
 	}
 
 	if (keyPressed[K_ESCAPE])
 	{
+		Beep(1000, 62);
 		State = EXIT;
 	}
 
@@ -233,6 +250,7 @@ void update_hand()
 {
 	if (keyPressed[K_SPACE] && fHandup != true)
 	{
+		Beep(2000, 62);
 		fHandup = true;
 		catchtimer = elapsedTime + 1;
 	}
@@ -241,6 +259,7 @@ void update_hand()
 
 void updateDead()
 {
+	Beep(1500, 62);
 	if (keyPressed[K_ENTER])
 	{
 		reset();
