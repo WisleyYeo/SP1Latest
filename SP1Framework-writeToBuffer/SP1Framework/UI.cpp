@@ -44,6 +44,7 @@ Menu mainMenu;
 Menu pauseMenu; 
 Menu exitMenu; 
 Menu backgroundMenu; 
+Menu deadMenu;
 
 // load the menu into memory 
 void load_menu(char *szFile, Menu* pMenu)
@@ -81,6 +82,7 @@ void init_menu()
 	load_menu("pausemenu.txt", &pauseMenu); 
 	load_menu("background.txt", &backgroundMenu);		
 	load_menu("ragequit.txt", &exitMenu);
+	load_menu("dead.txt", &deadMenu);
 }
 
 
@@ -103,6 +105,7 @@ void deinit_menu()
 	free_menu(&pauseMenu); 
 	free_menu(&backgroundMenu);		
 	free_menu(&exitMenu);
+	free_menu(&deadMenu);
 }
 
 // render the menu 
@@ -125,7 +128,6 @@ void render_menu(Menu*pMenu)
 
 void renderGame()
 {
-	clearBuffer(0x0F);
 
 
 	endfall();
@@ -208,28 +210,6 @@ void renderGame()
 
 void renderDead()
 {
-	ifstream deadscreen;
-	string data;
-
-	c.X = 0;
-	c.Y = 0;
-	SetConsoleTitle(L"YOU LOST");
-
-	deadscreen.open("dead.txt");
-
-	while (!deadscreen.eof())
-	{
-		getline(deadscreen, data);
-		writeToBuffer(c, data);
-		c.Y++;
-	}
-
-	deadscreen.close();
-	
-	string name;
-	//gotoXY(32, 22);
-	std::cin >> name;
-
 	
 }
 
@@ -255,10 +235,8 @@ void render()
 
 	case INGAME:
 		SetConsoleTitle(L"CATCHBALLS");
-
 		renderGame();
 		render_menu(&backgroundMenu);
-		
 		break;
 
 	case PAUSE:
@@ -267,12 +245,15 @@ void render()
 		break;
 
 	case DEAD:
-		renderDead();
+		SetConsoleTitle(L"YOU LOST !");
+		render_menu(&deadMenu);
+		//renderDead();
 		break;
 
 	case EXIT:
 		SetConsoleTitle(L"RAGEQUITTING");
 		render_menu(&exitMenu);
+		deinit_menu();
 		break;
 
 	}

@@ -36,7 +36,7 @@ GameState State = MAINMENU;
 
 void init()
 {
-	initConsole(ConsoleSize,"CATCHBALLS");
+	initConsole(ConsoleSize);
    
 	charLocation.X = ConsoleSize.X / 2 + 4;
 	charLocation.Y = ConsoleSize.Y - 1;

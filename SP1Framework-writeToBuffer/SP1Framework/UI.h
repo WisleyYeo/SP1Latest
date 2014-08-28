@@ -17,12 +17,10 @@ void render_menu(Menu* pMenu);
 void render();              // renders the current state of the game to the console
 
 void renderGame();
-void renderPause();
-void renderMainMenu();
-void renderExit();
 
 
-void background();
+
+
 
 
 
