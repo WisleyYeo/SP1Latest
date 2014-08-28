@@ -11,6 +11,7 @@ using std::cout;
 
 float balltimer = 1;
 float pulsetimer = 1;
+extern int score;
 extern double elapsedTime;
 extern COORD ConsoleSize;
 
@@ -113,5 +114,18 @@ void endfall()
 	else
 	{
 		ballfall(2,1);
+	}
+}
+
+void reset()
+{
+	elapsedTime = 0;
+	balltimer = 0;
+	pulsetimer = 0;
+	score = 0;
+	for (size_t i = 0; i < 21; ++i)
+	{
+		ballwave[i].ballpos = 2;
+		ballwave[i].inplay = 0;
 	}
 }

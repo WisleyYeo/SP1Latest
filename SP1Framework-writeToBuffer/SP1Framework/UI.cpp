@@ -208,10 +208,7 @@ void renderGame()
 }
 
 
-void renderDead()
-{
-	
-}
+
 
 void render()
 {

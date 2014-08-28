@@ -247,6 +247,7 @@ void updateDead()
 {
 	if (keyPressed[K_ENTER])
 	{
+		reset();
 		State = MAINMENU;
 	}
 }

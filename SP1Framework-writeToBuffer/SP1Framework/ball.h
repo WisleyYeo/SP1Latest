@@ -9,6 +9,7 @@ void ballfall(float x,float y);
 void ballinit();
 void ballpulse(float x);
 void endfall();
+void reset();
 
 struct ball
 {
