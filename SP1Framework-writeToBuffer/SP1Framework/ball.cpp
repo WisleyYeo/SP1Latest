@@ -14,6 +14,10 @@ float pulsetimer = 1;
 extern int score;
 extern double elapsedTime;
 extern COORD ConsoleSize;
+extern COORD charLocationLegs;
+extern COORD charLocation;
+extern COORD charLocationMid;
+extern COORD charLocationTop;
 
 extern COORD c;
 
@@ -57,7 +61,7 @@ void gen_ball()
 void ballfall(float x,float y)
 {
 	ballpulse(x);
-	for (size_t i = 0; i < ballwave.size(); ++i)
+	for (size_t i = 0; i < 21; ++i)
 	{
 		if (ballwave[i].ballpos < ConsoleSize.Y && ballwave[i].inplay != 0)
 		{
@@ -71,7 +75,7 @@ void ballfall(float x,float y)
 			
 			writeToBuffer(c, " O ", 0x0F);
 		}
-		else if (ballwave[i].ballpos >= ConsoleSize.Y)
+		else if (ballwave[i].ballpos >= ConsoleSize.Y - 1)
 		{
 			ballwave[i].inplay = 0;
 			ballwave[i].ballpos = 2;
@@ -128,4 +132,16 @@ void reset()
 		ballwave[i].ballpos = 2;
 		ballwave[i].inplay = 0;
 	}
+	
+	charLocationLegs.X = ConsoleSize.X / 2 + 4;
+	charLocationLegs.Y = ConsoleSize.Y - 1;
+
+	charLocation.X = ConsoleSize.X / 2 + 4;
+	charLocation.Y = ConsoleSize.Y - 2;
+	
+	charLocationMid.X = ConsoleSize.X / 2 + 4;
+	charLocationMid.Y = ConsoleSize.Y - 3;
+
+	charLocationTop.X = ConsoleSize.X / 2 + 6;
+	charLocationTop.Y = ConsoleSize.Y - 4;
 }

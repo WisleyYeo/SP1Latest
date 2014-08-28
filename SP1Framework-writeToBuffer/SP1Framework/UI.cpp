@@ -23,6 +23,7 @@ using std::ifstream;
 
 extern double elapsedTime;
 extern double deltaTime;
+extern COORD charLocationLegs;
 extern COORD charLocation;
 extern COORD charLocationMid;
 extern COORD charLocationTop;
@@ -183,6 +184,9 @@ void renderGame()
 
 	if (fHandup == true)
 	{
+		
+		writeToBuffer(charLocationLegs, " | | ", 0x0C);
+
 		writeToBuffer(charLocation, " \\_/ ", 0x0C);
 
 		writeToBuffer(charLocationMid, "\\(_)/", 0x0C);
@@ -194,6 +198,8 @@ void renderGame()
 	
 	else
 	{
+		writeToBuffer(charLocationLegs, " | | ", 0x0C);
+
 		writeToBuffer(charLocation, "/\\_/\\", 0x0C);
 
 		writeToBuffer(charLocationMid, " (_)", 0x0C);

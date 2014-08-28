@@ -37,15 +37,15 @@ void hand_down()
 
 void check_ball_hand_position()
 {
-	for (size_t i = 0; i < ballwave.size(); ++i)
+	for (size_t i = 0; i < 21; ++i)
 	{
 		if (ballwave[i].inplay != 0)
 		{
 
-			if (ballwave[i].ballpos == charLocation.Y  && ballwave[i].x == charLocation.X + 1)
+			if (ballwave[i].ballpos >= charLocation.Y - 1  && ballwave[i].x == charLocation.X + 1)
 			{		
 				ballwave[i].inplay = 0;
-				ballwave[i].ballpos = 1;
+				ballwave[i].ballpos = 2;
 				
 				if (fHandup == true)
 				{

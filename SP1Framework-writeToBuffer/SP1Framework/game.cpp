@@ -23,8 +23,8 @@ bool ingame = false;
 
 double elapsedTime;
 double deltaTime;
+COORD charLocationLegs;
 COORD charLocation;
-COORD charLocation1;
 COORD charLocationMid;
 COORD charLocationTop;
 extern bool fHandup;
@@ -37,15 +37,18 @@ GameState State = MAINMENU;
 void init()
 {
 	initConsole(ConsoleSize);
+
+	charLocationLegs.X = ConsoleSize.X / 2 + 4;
+	charLocationLegs.Y = ConsoleSize.Y - 1;
    
 	charLocation.X = ConsoleSize.X / 2 + 4;
-	charLocation.Y = ConsoleSize.Y - 1;
+	charLocation.Y = ConsoleSize.Y - 2;
 	
 	charLocationMid.X = ConsoleSize.X / 2 + 4;
-	charLocationMid.Y = ConsoleSize.Y - 2;
+	charLocationMid.Y = ConsoleSize.Y - 3;
 
 	charLocationTop.X = ConsoleSize.X / 2 + 6;
-	charLocationTop.Y = ConsoleSize.Y - 3;
+	charLocationTop.Y = ConsoleSize.Y - 4;
 
 	ballinit();
 
@@ -76,15 +79,7 @@ void getInput()
 }
 
 
-void updateHandsup()
-{
-	if (keyPressed[K_SPACE])
-	{
-		fHandup = true;
-		charLocation1.X = charLocation.X - 1;
-		charLocation1.Y = charLocation.Y - 2;
-	}
-}
+
 
 void update(double dt) 
 {
@@ -182,7 +177,7 @@ void updateGame()//INGAME
 
 	{
 
-
+		charLocationLegs.X-=7;
 		charLocation.X-=7;
 		charLocationMid.X-=7;
 		charLocationTop.X-=7;
@@ -194,6 +189,7 @@ void updateGame()//INGAME
 	if (keyPressed[K_RIGHT]&& charLocation.X < ConsoleSize.X - 16 && fHandup != true)
 	{
 
+		charLocationLegs.X+=7;
 		charLocation.X+=7;
 		charLocationMid.X+=7;
 		charLocationTop.X+=7;
@@ -235,7 +231,7 @@ void updateMainMenu()//MAINMENU
 
 void update_hand()
 {
-	if (keyPressed[K_SPACE])
+	if (keyPressed[K_SPACE] && fHandup != true)
 	{
 		fHandup = true;
 		catchtimer = elapsedTime + 1;
