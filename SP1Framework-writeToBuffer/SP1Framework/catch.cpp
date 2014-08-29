@@ -49,10 +49,22 @@ void check_ball_hand_position()
 				
 				if (fHandup == true)
 				{
+					Beep(12500, 70);
+					Beep(13000, 70);
+					Beep(13500, 70);
+					Beep(14000, 70);
 					score += 3;	
 				}
 				else
 				{
+					for (int i = 1; i < 4; )
+					{
+						Beep(800, 62);
+						Beep(600, 62);
+						Beep(400, 62);
+						Beep(200, 62);
+			
+					}
 					State = DEAD;
 					
 				}	 

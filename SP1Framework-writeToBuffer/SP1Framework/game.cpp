@@ -127,7 +127,7 @@ void update(double dt)
 
 	if (keyPressed[K_ESCAPE])
 	{
-		Beep(1000, 62);
+		Beep(1000, 90);
 		g_quitGame = true;
 	}
 
@@ -138,12 +138,12 @@ void updateHighscore()//HIGHSCORE
 {
 	if (keyPressed[K_1])
 	{
-		Beep(1000, 62);
+		Beep(1500, 75);
 		State = MAINMENU;
 	}
 	if (keyPressed[K_ESCAPE])
 	{
-		Beep(1000, 62);
+		Beep(1000, 90);
 		State = EXIT;
 	}
 }
@@ -152,12 +152,12 @@ void updatePause()//PAUSE
 {
 	if (keyPressed[K_2] || keyPressed[K_ESCAPE])
 	{
-		Beep(1500, 62);
+		Beep(1000, 90);
 		State = EXIT;
 	}
 	if (keyPressed[K_1])
 	{
-		Beep(1000, 62);
+		Beep(1500, 75);
 		State = INGAME;
 
 	}
@@ -183,7 +183,8 @@ void updateGame()//INGAME
 
 
 
-		Beep(2000, 67);
+		Beep(1440, 62);
+		Beep(1000, 62);
 
 		charLocation.X -= 7;
 		charLocationMid.X -= 7;
@@ -200,7 +201,8 @@ void updateGame()//INGAME
 
 		
 
-		Beep(2000, 67);
+		Beep(1440, 62);
+		Beep(2000, 62);
 
 		charLocation.X += 7;
 		charLocationMid.X += 7;
@@ -212,12 +214,12 @@ void updateGame()//INGAME
 
 	if (keyPressed[K_BACKSPACE])
 	{
-		Beep(1000, 62);
+		Beep(3500, 75);
 		State = PAUSE;
 	}
 	if (keyPressed[K_ESCAPE])
 	{
-		Beep(1000, 62);
+		Beep(1000,90);
 		State = EXIT;
 	}
 }
