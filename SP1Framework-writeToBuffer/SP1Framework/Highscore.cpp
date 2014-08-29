@@ -46,7 +46,7 @@ void PrintHS(Highscore *Player) //Prints name and score from memory
 	c.X = 0;
 	c.Y = 0;
 
-	writeToBuffer(c, "---HIGHSCORES---");
+	writeToBuffer(c, "---HIGHSCORES---",0x0D);
 
 	
 	c.X = 0;
@@ -59,7 +59,7 @@ void PrintHS(Highscore *Player) //Prints name and score from memory
 		
 		ss.str("");
 		ss << j << ". " << Player[i].Name << " " << Player[i].Score;
-		writeToBuffer(c, ss.str());
+		writeToBuffer(c, ss.str(),0x0D);
 		i++;
 		j++;
 		c.Y++;
@@ -67,9 +67,9 @@ void PrintHS(Highscore *Player) //Prints name and score from memory
 
 	c.X = 0;
 	c.Y = 20;
-	writeToBuffer(c, "[F1] Return To Main Menu");
+	writeToBuffer(c, "[F1] Return To Main Menu",0x0A);
 	c.Y++;
-	writeToBuffer(c, "[ESC] Exit Game");
+	writeToBuffer(c, "[ESC] Exit Game",0x0A);
 
 
 

@@ -118,7 +118,7 @@ void render_menu(Menu*pMenu)
 	for (int i=0; i<pMenu->nLine; i++)	
 	{
 		if (strlen(pMenu->text[i]))
-			writeToBuffer(c, pMenu->text[i]);
+			writeToBuffer(c, pMenu->text[i],0x0A);
 		c.Y++;
 	}
 
@@ -196,13 +196,13 @@ void renderGame()
 	
 	else
 	{
-		writeToBuffer(charLocationLegs, " | | ", 0x0C);
+		writeToBuffer(charLocationLegs, " | | ", 0x0D);
 
-		writeToBuffer(charLocation, "/\\_/\\", 0x0C);
+		writeToBuffer(charLocation, "/\\_/\\", 0x0D);
 
-		writeToBuffer(charLocationMid, " (_)", 0x0C);
+		writeToBuffer(charLocationMid, " (_)", 0x0D);
 
-		writeToBuffer(charLocationTop, "_", 0x0C);
+		writeToBuffer(charLocationTop, "_", 0x0D);
 	}
 
 

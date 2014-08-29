@@ -57,14 +57,12 @@ void check_ball_hand_position()
 				}
 				else
 				{
-					for (int i = 1; i < 4; )
-					{
+					
 						Beep(800, 62);
 						Beep(600, 62);
 						Beep(400, 62);
 						Beep(200, 62);
 			
-					}
 					State = DEAD;
 					
 				}	 

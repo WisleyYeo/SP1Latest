@@ -168,7 +168,7 @@ void updatePause()//PAUSE
 
 void updateExit()//EXIT
 {
-	return;
+	
 }
 
 
