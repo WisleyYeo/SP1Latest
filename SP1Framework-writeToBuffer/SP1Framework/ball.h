@@ -10,6 +10,7 @@ void ballinit();
 void ballpulse(float x);
 void endfall();
 void reset();
+void balldude();
 
 struct ball
 {

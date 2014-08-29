@@ -19,6 +19,11 @@ extern COORD charLocation;
 extern COORD charLocationMid;
 extern COORD charLocationTop;
 
+COORD dudeLocationLegs;
+COORD dudeLocation;
+COORD dudeLocationMid;
+COORD dudeLocationTop;
+
 extern COORD c;
 
 
@@ -36,6 +41,17 @@ void ballpulse(double x)
 
 void ballinit()
 {
+	dudeLocationLegs.X = ConsoleSize.X / 2 + 5;
+	dudeLocationLegs.Y = 6;
+
+	dudeLocation.X = ConsoleSize.X / 2 + 4;
+	dudeLocation.Y = 5;
+	
+	dudeLocationMid.X = ConsoleSize.X / 2 + 5;
+	dudeLocationMid.Y = 4;
+
+	dudeLocationTop.X = ConsoleSize.X / 2 + 6;
+	dudeLocationTop.Y = 3;
 	gen_ball();
 }
 
@@ -80,6 +96,7 @@ void ballfall(double x,double y)
 		{
 			ballwave[i].inplay = 0;
 			ballwave[i].ballpos = 2;
+			score -= 1;
 		}
 	}
 	if (elapsedTime > balltimer)
@@ -92,7 +109,7 @@ void ballfall(double x,double y)
 
 void endfall()
 {
-		if (elapsedTime > 1000)
+	if (elapsedTime > 1000)
 	{
 		ballfall(0.1,0.1);
 	}
@@ -120,6 +137,7 @@ void endfall()
 	{
 		ballfall(2,1.0);
 	}
+	balldude();
 }
 
 void reset()
@@ -145,4 +163,45 @@ void reset()
 
 	charLocationTop.X = ConsoleSize.X / 2 + 6;
 	charLocationTop.Y = ConsoleSize.Y - 4;
+}
+
+void balldude()
+{
+
+	for (size_t i = 0; i < 21; ++i)
+	{
+
+		if (ballwave[i].ballpos == 4 && ballwave[i].inplay != 0)
+		{
+			dudeLocationLegs.X = ballwave[i].x + 3;
+
+			dudeLocation.X = ballwave[i].x + 3;
+
+			dudeLocationMid.X = ballwave[i].x + 2;
+
+			dudeLocationTop.X = ballwave[i].x + 4;
+
+			writeToBuffer(dudeLocationLegs, "| | ", 0x0C);
+			writeToBuffer(dudeLocation, "\\_/\\", 0x0C);
+			writeToBuffer(dudeLocationMid, "\\(_)", 0x0C);
+			writeToBuffer(dudeLocationTop, "_", 0x0C);
+		}
+		else if(ballwave[i].ballpos == 6 && ballwave[i].inplay != 0)
+		{
+			dudeLocationLegs.X = ballwave[i].x + 3;
+
+			dudeLocation.X = ballwave[i].x + 2;
+
+			dudeLocationMid.X = ballwave[i].x + 3;
+
+			dudeLocationTop.X = ballwave[i].x + 4;
+
+			writeToBuffer(dudeLocationLegs, "| | ", 0x0C);
+			writeToBuffer(dudeLocation, "/\\_/\\", 0x0C);
+			writeToBuffer(dudeLocationMid, "(_)", 0x0C);
+			writeToBuffer(dudeLocationTop, "_", 0x0C);
+		}
+
+	}
+	
 }

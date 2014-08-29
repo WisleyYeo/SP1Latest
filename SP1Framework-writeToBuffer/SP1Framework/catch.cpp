@@ -53,7 +53,7 @@ void check_ball_hand_position()
 					Beep(13000, 70);
 					Beep(13500, 70);
 					Beep(14000, 70);
-					score += 3;	
+					score += 2;	
 				}
 				else
 				{
