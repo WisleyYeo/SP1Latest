@@ -76,25 +76,6 @@ void PrintHS(Highscore *Player) //Prints name and score from memory
 
 }
 
-void WriteHS(string File,Highscore *Player) //Writes player's score and name into text file
-{
-	std::ofstream Highscore(File);
-	int i = 0;
-
-
-
-	if (Highscore.is_open())
-	{
-		while (Player->Name.length())
-		{
-			Highscore << Player->Name << " " << Player->Score << endl;
-			i++;
-			Player++;
-
-		}
-	}
-	Highscore.close();
-}
 
 void SortHS(Highscore *Player)
 {

@@ -20,6 +20,8 @@ void renderGame();
 
 void recordFinalScore();
 
+void renderName();
+
 
 
 

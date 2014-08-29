@@ -52,6 +52,7 @@ char arr[] = {'A','A','A','A','A'};
 
 COORD arcadescore = {35,13};
 COORD c;
+COORD X = { 36, 13 };
 
 Menu mainMenu; 
 Menu pauseMenu; 
@@ -253,7 +254,7 @@ void renderGame()
 void renderDead ()
 {
 
-	
+
 
 	c.Y -= 2;
 	c.X = ConsoleSize.X / 2 - 9;
@@ -264,7 +265,7 @@ void renderDead ()
 	writeToBuffer(c, "PRESS SPACE TO MOVE ON TO NEXT CHARACTER");
 
 
-
+	writeToBuffer(arcadescore, arr);
 
 
 	if (arr[k] >= 'A' && arr[k] <= 'Z')
@@ -288,17 +289,19 @@ void renderDead ()
 		{
 			arr[k] = 'A';
 		}
-
+		
 		if (isKeyPressed(VK_SPACE))
 		{
-
+			writeToBuffer(X, "_");
+			X.X++;
 			k++;
-			arcadescore.X++;
-
-
+			
 		}
 
-		writeToBuffer(arcadescore, arr[k]);
+		
+		
+
+		
 
 		if (k == 5)
 		{
@@ -308,7 +311,6 @@ void renderDead ()
 			{
 				endName += arr[k];
 			}
-
 			recordFinalScore();
 			
 			State = HIGHSCORE;
@@ -336,6 +338,14 @@ void recordFinalScore()
 		Highscore << score;
 	}
 	Highscore.close();
+}
+
+void renderName()
+{
+	c.X = 35;
+	c.Y = 12;
+
+	writeToBuffer(c, arr[k]);
 }
 
 void render()
@@ -374,6 +384,7 @@ void render()
 		SetConsoleTitle(L"YOU LOST !");
 		render_menu(&deadMenu);
 		renderDead();
+		//renderName();
 		break;
 
 	case EXIT:
