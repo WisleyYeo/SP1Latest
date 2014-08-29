@@ -117,6 +117,10 @@ void update(double dt)
 
 	case EXIT:
 		updateExit();
+		if (keyPressed[K_ESCAPE])
+		{
+			g_quitGame = true;
+		}
 		break;
 
 	}
@@ -125,11 +129,7 @@ void update(double dt)
 	// Updating the location of the character based on the key press
 
 
-	if (keyPressed[K_ESCAPE])
-	{
-		Beep(1000, 90);
-		g_quitGame = true;
-	}
+	
 
 
 }

@@ -253,7 +253,10 @@ void render()
 
 	case EXIT:
 		SetConsoleTitle(L"RAGEQUITTING");
-		render_menu(&exitMenu);
+		if (!g_quitGame)
+		{
+			render_menu(&exitMenu);
+		}
 		deinit_menu();
 		break;
 
