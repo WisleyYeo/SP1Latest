@@ -34,7 +34,7 @@ COORD ConsoleSize = { 80, 25 };
 
 
 
-GameState State = DEAD;
+GameState State = MAINMENU;
 
 void init()
 {
@@ -53,6 +53,7 @@ void init()
 	charLocationTop.Y = ConsoleSize.Y - 4;
 
 	ballinit();
+	
 
 	elapsedTime = 0.0;
 }
@@ -126,10 +127,6 @@ void update(double dt)
 		break;
 
 	}
-
-
-	// Updating the location of the character based on the key press
-
 
 	
 

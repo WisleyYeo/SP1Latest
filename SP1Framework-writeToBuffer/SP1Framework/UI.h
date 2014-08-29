@@ -18,7 +18,7 @@ void render();              // renders the current state of the game to the cons
 
 void renderGame();
 
-
+void recordFinalScore();
 
 
 

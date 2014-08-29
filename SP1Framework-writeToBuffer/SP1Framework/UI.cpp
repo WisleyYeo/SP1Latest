@@ -12,6 +12,13 @@
 
 #include "Framework\console.h"
 
+extern bool keyPressed[];
+
+
+char szName[20];
+int  ientered;
+bool ffinished = false;
+
 // Console size, width by height
 extern COORD ConsoleSize;
 
@@ -31,9 +38,11 @@ extern bool fHandup;
 
 
 
+
 extern GameState State;
 
 Highscore HS[10];
+
 
 extern int score;
 
@@ -42,9 +51,6 @@ char arr[] = {'A','A','A','A','A'};
 
 
 COORD arcadescore = {35,13};
-
-
-
 COORD c;
 
 Menu mainMenu; 
@@ -52,6 +58,10 @@ Menu pauseMenu;
 Menu exitMenu; 
 Menu backgroundMenu; 
 Menu deadMenu;
+
+string endName = "";
+
+
 
 // load the menu into memory 
 void load_menu(char *szFile, Menu* pMenu)
@@ -134,6 +144,7 @@ void render_menu(Menu*pMenu)
 void renderGame()
 {
 
+	
 
 	endfall();
 	update_hand();
@@ -151,7 +162,7 @@ void renderGame()
 		0xA1, 0xB2, 0xC3, 0xD4, 0xE5, 0xF6
 	};
 
-
+	
 
 
 
@@ -161,7 +172,7 @@ void renderGame()
 	ss << 1.0 / deltaTime << "FPS";
 	c.X = ConsoleSize.X - 9;
 	c.Y = 0;
-	writeToBuffer(c, ss.str());
+	writeToBuffer(c, ss.str(),0x3F);
 
 	// displays the elapsed time
 	ss.str("");
@@ -169,13 +180,33 @@ void renderGame()
 	c.X = 0;
 	c.Y = 0;
 	writeToBuffer(c, ss.str(), 0x0F);
+	c.X = 9;
+	//Codes below will fix the segmentation problem, if this is removed, the problem should be clearly visible
+	if (elapsedTime < 10)
+	{
+		writeToBuffer(c, "             ", 0x0F);
+	}
+	if (elapsedTime > 10 && elapsedTime <100)
+	{
+		writeToBuffer(c, "S            ", 0x0F);
+	}
+	if (elapsedTime > 100 && elapsedTime < 1000)
+	{
+		writeToBuffer(c, "CS           ", 0x0F);
+	}
+	if (elapsedTime > 1000 && elapsedTime < 10000)
+	{
+		writeToBuffer(c, "ECS          ", 0x0F);
+	}
 
+
+		
 	//display the score
 	ss.str("");
 	ss << "Score : " << score;
 	c.X = ConsoleSize.X /2;
 	c.Y = 0;
-	writeToBuffer(c, ss.str(),0x0A);
+	writeToBuffer(c, ss.str(),0x3A);
 
 	
 	
@@ -189,26 +220,26 @@ void renderGame()
 	if (fHandup == true)
 	{
 		
-		writeToBuffer(charLocationLegs, " | | ", 0x0D);
+		writeToBuffer(charLocationLegs, " | | ", 0x3A);
 
-		writeToBuffer(charLocation, " \\_/ ", 0x0D);
+		writeToBuffer(charLocation, " \\_/ ", 0x3A);
 
-		writeToBuffer(charLocationMid, "\\(_)/", 0x0D);
+		writeToBuffer(charLocationMid, "\\(_)/", 0x3A);
 
-		writeToBuffer(charLocationTop, "_", 0x0D);
+		writeToBuffer(charLocationTop, "_", 0x3A);
 
 	}
 	
 	
 	else
 	{
-		writeToBuffer(charLocationLegs, " | | ", 0x0D);
+		writeToBuffer(charLocationLegs, " | | ", 0x3A);
 
-		writeToBuffer(charLocation, "/\\_/\\", 0x0D);
+		writeToBuffer(charLocation, "/\\_/\\", 0x3A);
 
-		writeToBuffer(charLocationMid, " (_)", 0x0D);
+		writeToBuffer(charLocationMid, " (_)", 0x3A);
 
-		writeToBuffer(charLocationTop, "_", 0x0D);
+		writeToBuffer(charLocationTop, "_", 0x3A);
 	}
 
 
@@ -221,16 +252,19 @@ void renderGame()
 
 void renderDead ()
 {
-	c.Y-=2;
-	c.X =  ConsoleSize.X/2 -9;
-	writeToBuffer(c,"(5 Characters)");
 
-	c.Y++;
-	c.X -=12;
-	writeToBuffer(c,"PRESS SPACE TO MOVE ON TO NEXT CHARACTER");
 	
 
-		
+	c.Y -= 2;
+	c.X = ConsoleSize.X / 2 - 9;
+	writeToBuffer(c, "(5 Characters)");
+
+	c.Y++;
+	c.X -= 12;
+	writeToBuffer(c, "PRESS SPACE TO MOVE ON TO NEXT CHARACTER");
+
+
+
 
 
 	if (arr[k] >= 'A' && arr[k] <= 'Z')
@@ -239,13 +273,13 @@ void renderDead ()
 		{
 			arr[k]++;
 		}
-		
-		
+
+
 		if (isKeyPressed(VK_DOWN))
 		{
 			arr[k]--;
 		}
-		
+
 		if (arr[k] == '@')
 		{
 			arr[k] = 'Z';
@@ -254,35 +288,54 @@ void renderDead ()
 		{
 			arr[k] = 'A';
 		}
-				
+
 		if (isKeyPressed(VK_SPACE))
 		{
-			
+
 			k++;
 			arcadescore.X++;
-			
-			
+
+
 		}
-		
-		writeToBuffer(arcadescore,arr[k]);
-		
-		if(k == 5)
+
+		writeToBuffer(arcadescore, arr[k]);
+
+		if (k == 5)
 		{
-			LoadHS("Highscore.txt",HS);
 			
-			for(k =0;k<5;k++)
+
+			for (k = 0; k < 5; k++)
 			{
-				//arr[k]>>HS.Name; 
+				endName += arr[k];
 			}
-			WriteHS("Highscore.txt",HS);
+
+			recordFinalScore();
+			
 			State = HIGHSCORE;
 		}
-		
-		
+
+
 
 
 
 	}
+
+
+}
+
+void recordFinalScore()
+{
+
+	
+	std::ofstream Highscore;
+	Highscore.open("Highscore.txt", std::ios::app);
+
+	if (Highscore.is_open())
+	{
+		Highscore << endName << endl;
+		Highscore << score;
+	}
+	Highscore.close();
 }
 
 void render()
@@ -307,8 +360,9 @@ void render()
 
 	case INGAME:
 		SetConsoleTitle(L"CATCHBALLS");
-		renderGame();
+		clearBuffer(0x30);
 		render_menu(&backgroundMenu);
+		renderGame();
 		break;
 
 	case PAUSE:

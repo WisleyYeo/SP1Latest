@@ -89,7 +89,7 @@ void ballfall(double x,double y)
 			c.Y = ballwave[i].ballpos;
 
 			
-			writeToBuffer(c, " O ", 0x0F);
+			writeToBuffer(c, " O ", 0x34);
 
 		}
 		else if (ballwave[i].ballpos >= ConsoleSize.Y - 1)
@@ -181,10 +181,10 @@ void balldude()
 
 			dudeLocationTop.X = ballwave[i].x + 4;
 
-			writeToBuffer(dudeLocationLegs, "| | ", 0x0C);
-			writeToBuffer(dudeLocation, "\\_/\\", 0x0C);
-			writeToBuffer(dudeLocationMid, "\\(_)", 0x0C);
-			writeToBuffer(dudeLocationTop, "_", 0x0C);
+			writeToBuffer(dudeLocationLegs, "| | ", 0x3A);
+			writeToBuffer(dudeLocation, "\\_/\\", 0x3A);
+			writeToBuffer(dudeLocationMid, "\\(_)", 0x3A);
+			writeToBuffer(dudeLocationTop, "_", 0x3A);
 		}
 		else if(ballwave[i].ballpos == 6 && ballwave[i].inplay != 0)
 		{
@@ -196,10 +196,10 @@ void balldude()
 
 			dudeLocationTop.X = ballwave[i].x + 4;
 
-			writeToBuffer(dudeLocationLegs, "| | ", 0x0C);
-			writeToBuffer(dudeLocation, "/\\_/\\", 0x0C);
-			writeToBuffer(dudeLocationMid, "(_)", 0x0C);
-			writeToBuffer(dudeLocationTop, "_", 0x0C);
+			writeToBuffer(dudeLocationLegs, "| | ", 0x3A);
+			writeToBuffer(dudeLocation, "/\\_/\\", 0x3A);
+			writeToBuffer(dudeLocationMid, "(_)", 0x3A);
+			writeToBuffer(dudeLocationTop, "_", 0x3A);
 		}
 
 	}

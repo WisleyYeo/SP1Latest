@@ -76,7 +76,7 @@ void PrintHS(Highscore *Player) //Prints name and score from memory
 
 }
 
-void WriteHS(string File, Highscore *Player) //Writes player's score and name into text file
+void WriteHS(string File,Highscore *Player) //Writes player's score and name into text file
 {
 	std::ofstream Highscore(File);
 	int i = 0;
