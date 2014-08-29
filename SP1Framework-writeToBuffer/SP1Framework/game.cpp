@@ -261,9 +261,10 @@ void update_hand()
 
 void updateDead()
 {
-	Beep(1500, 62);
+	
 	if (keyPressed[K_ENTER])
 	{
+		Beep(1500, 62);
 		reset();
 		State = MAINMENU;
 	}

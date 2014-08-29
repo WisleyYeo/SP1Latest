@@ -9,8 +9,8 @@ using std::vector;
 using std::cout;
 
 
-float balltimer = 1;
-float pulsetimer = 1;
+double balltimer = 1.0;
+double pulsetimer = 1.0;
 extern int score;
 extern double elapsedTime;
 extern COORD ConsoleSize;
@@ -24,7 +24,7 @@ extern COORD c;
 
 vector<ball> ballwave;
 
-void ballpulse(float x)
+void ballpulse(double x)
 {
 	if (elapsedTime > pulsetimer)
 	{
@@ -58,7 +58,7 @@ void gen_ball()
 	}
 }
 
-void ballfall(float x,float y)
+void ballfall(double x,double y)
 {
 	ballpulse(x);
 	for (size_t i = 0; i < 21; ++i)
@@ -74,6 +74,7 @@ void ballfall(float x,float y)
 
 			
 			writeToBuffer(c, " O ", 0x0F);
+
 		}
 		else if (ballwave[i].ballpos >= ConsoleSize.Y - 1)
 		{
@@ -117,7 +118,7 @@ void endfall()
 	}
 	else
 	{
-		ballfall(2,1);
+		ballfall(2,1.0);
 	}
 }
 

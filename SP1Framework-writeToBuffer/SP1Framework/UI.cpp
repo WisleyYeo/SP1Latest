@@ -152,24 +152,24 @@ void renderGame()
 	// displays the framerate
 	std::ostringstream ss;
 	ss << std::fixed << std::setprecision(3);
-	ss << 1.0 / deltaTime << "fps";
+	ss << 1.0 / deltaTime << "FPS";
 	c.X = ConsoleSize.X - 9;
 	c.Y = 0;
 	writeToBuffer(c, ss.str());
 
 	// displays the elapsed time
 	ss.str("");
-	ss << elapsedTime << "secs";
+	ss << elapsedTime << "SECS";
 	c.X = 0;
 	c.Y = 0;
-	writeToBuffer(c, ss.str(), 0x59);
+	writeToBuffer(c, ss.str(), 0x0F);
 
 	//display the score
 	ss.str("");
 	ss << "Score : " << score;
 	c.X = ConsoleSize.X /2;
 	c.Y = 0;
-	writeToBuffer(c, ss.str());
+	writeToBuffer(c, ss.str(),0x0A);
 
 	
 	
@@ -183,13 +183,13 @@ void renderGame()
 	if (fHandup == true)
 	{
 		
-		writeToBuffer(charLocationLegs, " | | ", 0x0C);
+		writeToBuffer(charLocationLegs, " | | ", 0x0D);
 
-		writeToBuffer(charLocation, " \\_/ ", 0x0C);
+		writeToBuffer(charLocation, " \\_/ ", 0x0D);
 
-		writeToBuffer(charLocationMid, "\\(_)/", 0x0C);
+		writeToBuffer(charLocationMid, "\\(_)/", 0x0D);
 
-		writeToBuffer(charLocationTop, "_", 0x0C);
+		writeToBuffer(charLocationTop, "_", 0x0D);
 
 	}
 	
