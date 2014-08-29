@@ -37,6 +37,12 @@ Highscore HS[10];
 
 extern int score;
 
+int k = 0;
+char arr[] = {'A','A','A','A','A'};
+
+
+COORD arcadescore = {35,13};
+
 
 
 COORD c;
@@ -213,6 +219,71 @@ void renderGame()
 
 
 
+void renderDead ()
+{
+	c.Y-=2;
+	c.X =  ConsoleSize.X/2 -9;
+	writeToBuffer(c,"(5 Characters)");
+
+	c.Y++;
+	c.X -=12;
+	writeToBuffer(c,"PRESS SPACE TO MOVE ON TO NEXT CHARACTER");
+	
+
+		
+
+
+	if (arr[k] >= 'A' && arr[k] <= 'Z')
+	{
+		if (isKeyPressed(VK_UP))
+		{
+			arr[k]++;
+		}
+		
+		
+		if (isKeyPressed(VK_DOWN))
+		{
+			arr[k]--;
+		}
+		
+		if (arr[k] == '@')
+		{
+			arr[k] = 'Z';
+		}
+		if (arr[k] == '[')
+		{
+			arr[k] = 'A';
+		}
+				
+		if (isKeyPressed(VK_SPACE))
+		{
+			
+			k++;
+			arcadescore.X++;
+			
+			
+		}
+		
+		writeToBuffer(arcadescore,arr[k]);
+		
+		if(k == 5)
+		{
+			LoadHS("Highscore.txt",HS);
+			
+			for(k =0;k<5;k++)
+			{
+				//arr[k]>>HS.Name; 
+			}
+			WriteHS("Highscore.txt",HS);
+			State = HIGHSCORE;
+		}
+		
+		
+
+
+
+	}
+}
 
 void render()
 {
@@ -248,7 +319,7 @@ void render()
 	case DEAD:
 		SetConsoleTitle(L"YOU LOST !");
 		render_menu(&deadMenu);
-		//renderDead();
+		renderDead();
 		break;
 
 	case EXIT:
@@ -265,6 +336,3 @@ void render()
 	flushBufferToConsole();
 
 }
-
-
-

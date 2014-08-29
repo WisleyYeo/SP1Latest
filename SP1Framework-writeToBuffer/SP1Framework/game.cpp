@@ -32,7 +32,9 @@ extern double catchtimer;
 
 COORD ConsoleSize = { 80, 25 };
 
-GameState State = MAINMENU;
+
+
+GameState State = DEAD;
 
 void init()
 {

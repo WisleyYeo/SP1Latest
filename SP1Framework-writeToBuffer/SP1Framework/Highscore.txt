@@ -1,8 +1,1 @@
-Wisley
-2000
-Yolo
-100000
-HeyHey
-20000000
-YOOO
-1000
+Wisley 200000
