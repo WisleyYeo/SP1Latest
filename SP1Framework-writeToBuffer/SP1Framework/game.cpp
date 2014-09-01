@@ -34,7 +34,7 @@ COORD ConsoleSize = { 80, 25 };
 
 
 
-GameState State = DEAD;
+GameState State = MAINMENU;
 
 void init()
 {
@@ -120,10 +120,6 @@ void update(double dt)
 
 	case EXIT:
 		updateExit();
-		if (keyPressed[K_ESCAPE])
-		{
-			g_quitGame = true;
-		}
 		break;
 
 	}
@@ -167,7 +163,10 @@ void updatePause()//PAUSE
 
 void updateExit()//EXIT
 {
-	
+	if (keyPressed[K_ESCAPE])
+		{
+			g_quitGame = true;
+		}
 }
 
 
@@ -229,6 +228,7 @@ void updateMainMenu()//MAINMENU
 {
 	if (keyPressed[K_ENTER])
 	{
+		reset();
 		Beep(3000, 62);
 		State = INGAME;
 	}
@@ -264,7 +264,6 @@ void updateDead()
 	if (keyPressed[K_ENTER])
 	{
 		Beep(1500, 62);
-		reset();
 		State = MAINMENU;
 	}
 }

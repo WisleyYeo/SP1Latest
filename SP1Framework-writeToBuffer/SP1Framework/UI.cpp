@@ -51,6 +51,7 @@ char arr[] = {'A','A','A','A','A'};
 
 
 COORD arcadescore = {35,13};
+COORD arcadescoreletter = {35,13};
 COORD c;
 COORD X = { 36, 13 };
 
@@ -262,23 +263,24 @@ void renderDead ()
 
 	c.Y++;
 	c.X -= 12;
-	writeToBuffer(c, "PRESS SPACE TO MOVE ON TO NEXT CHARACTER");
+
 
 
 	writeToBuffer(arcadescore, arr);
+	writeToBuffer(arcadescoreletter, arr[k], 0xf0);
 
 
 	if (arr[k] >= 'A' && arr[k] <= 'Z')
 	{
 		if (isKeyPressed(VK_UP))
 		{
-			arr[k]++;
+			arr[k]--;
 		}
 
 
 		if (isKeyPressed(VK_DOWN))
 		{
-			arr[k]--;
+			arr[k]++;
 		}
 
 		if (arr[k] == '@')
@@ -290,23 +292,24 @@ void renderDead ()
 			arr[k] = 'A';
 		}
 		
-		if (isKeyPressed(VK_SPACE))
+		if (isKeyPressed(VK_RIGHT) && k < 4)
 		{
-			writeToBuffer(X, "_");
+			arcadescoreletter.X++;
 			X.X++;
 			k++;
-			
 		}
-
-		
-		
-
-		
-
-		if (k == 5)
+		if (isKeyPressed(VK_LEFT) && k > 0)
 		{
-			
+			arcadescoreletter.X--;
+			X.X--;
+			k--;
+		}
+		
 
+		
+
+		if (isKeyPressed(VK_RETURN))
+		{
 			for (k = 0; k < 5; k++)
 			{
 				endName += arr[k];
@@ -315,11 +318,6 @@ void renderDead ()
 			
 			State = HIGHSCORE;
 		}
-
-
-
-
-
 	}
 
 
