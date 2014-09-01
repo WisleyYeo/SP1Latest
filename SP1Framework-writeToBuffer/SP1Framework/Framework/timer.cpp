@@ -6,7 +6,7 @@ StopWatch::StopWatch()
 
     #define TARGET_RESOLUTION 1         // 1-millisecond target resolution
     TIMECAPS tc;
-    
+		
 
     if (timeGetDevCaps(&tc, sizeof(TIMECAPS)) != TIMERR_NOERROR) 
     {
