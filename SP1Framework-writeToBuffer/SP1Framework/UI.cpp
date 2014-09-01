@@ -259,9 +259,17 @@ void renderDead ()
 
 
 
-	c.Y -= 2;
-	c.X = ConsoleSize.X / 2 - 9;
-	writeToBuffer(c, "(5 Characters)");
+	c.Y = 15;
+	c.X = 20;
+	
+	writeToBuffer(c, "[Right Arrow Key] Edit right character",0x0D);
+	c.Y++;
+	writeToBuffer(c, "[Left Arrow Key] Edit left character",0x0D);
+	c.Y++; 
+	writeToBuffer(c, "[Up/Down Arrow Key] Change character",0x0D);
+	c.Y+=2;
+	writeToBuffer(c, "[ENTER] Lock In Name",0x0D);
+	
 
 	c.Y++;
 	c.X -= 12;
