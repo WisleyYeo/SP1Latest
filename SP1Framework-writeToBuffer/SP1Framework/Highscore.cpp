@@ -17,6 +17,8 @@ extern COORD c;
 
 
 
+
+
 void LoadHS(string File, Highscore *Player) //Load contents from text file, stores in memory
 {
 	int i = 0;
@@ -77,11 +79,11 @@ void PrintHS(Highscore *Player) //Prints name and score from memory
 }
 
 
-void SortHS(Highscore *Player)
+void SortHS(Highscore *Player) //Sorts highscore from top to bottom, highest score to lowest score
 {
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 100; i++)
 	{
-		for (int j = i + 1; j < 10; j++)
+		for (int j = i + 1; j < 100; j++)
 		{
 			if (Player[i].Score < Player[j].Score)//Basically pushes the highest score top and pushes the lowest to the bottom
 			{
@@ -91,8 +93,12 @@ void SortHS(Highscore *Player)
 				Player[i].Score = Player[j].Score;
 				Player[j].Name = TempName;
 				Player[j].Score = TempScore;
+				
 			}
 		}
+
 	}
-} //Sorts highscore from top to bottom, highest score to lowest score
+	
+}
+
 

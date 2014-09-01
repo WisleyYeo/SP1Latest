@@ -30,6 +30,8 @@ COORD charLocationTop;
 extern bool fHandup;
 extern double catchtimer;
 
+
+
 COORD ConsoleSize = { 80, 25 };
 
 
@@ -264,6 +266,12 @@ void updateDead()
 	if (keyPressed[K_ENTER])
 	{
 		Beep(1500, 62);
-		State = MAINMENU;
+
+		State = HIGHSCORE;
+
+		recordFinalScore();
+
+		reset();
+		
 	}
 }
