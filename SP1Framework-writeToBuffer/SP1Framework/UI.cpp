@@ -288,7 +288,7 @@ void renderDead ()
 		}
 
 		if (arr[k] == '@')
-		{
+		{	
 			arr[k] = 'Z';
 		}
 		if (arr[k] == '[')
@@ -296,13 +296,13 @@ void renderDead ()
 			arr[k] = 'A';
 		}
 		
-		if (keyPressed[K_RIGHT] && k <= 4)
+		if (keyPressed[K_RIGHT] && k < 4)
 		{
 			arcadescoreletter.X++;
 			X.X++;
 			k++;
 		}
-		if (keyPressed[K_LEFT] && k >= 0)
+		if (keyPressed[K_LEFT] && k > 0)
 		{
 			arcadescoreletter.X--;
 			X.X--;
@@ -332,7 +332,7 @@ void recordFinalScore()
 		{
 			endName += arr[i];
 		}
-		if (Highscore.is_open())
+		if (Highscore.is_open() && score > 0)
 		{
 			Highscore << endName << endl;
 			Highscore << score << endl;
@@ -365,6 +365,7 @@ void render()
 		break;
 
 	case HIGHSCORE:	
+		SetConsoleTitle(L"HIGHSCORES");
 		LoadHS("Highscore.txt", HS);
 		SortHS(HS);
 		PrintHS(HS);

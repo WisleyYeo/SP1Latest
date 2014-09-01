@@ -43,7 +43,7 @@ void PrintHS(Highscore *Player) //Prints name and score from memory
 	int j = 1;
 	std::ostringstream ss;
 
-	SetConsoleTitle(L"HIGHSCORES");
+	
 
 	c.X = 0;
 	c.Y = 0;
